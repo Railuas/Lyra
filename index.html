@@ -300,7 +300,129 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
-        
+
+        /* Soul Reading Calculator Styles */
+        #soul-reading .contact-form {
+            max-width: 800px;
+        }
+
+        #readingResult {
+            display: none;
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            border-left: 3px solid var(--cosmic-purple);
+        }
+
+        #readingResult h3 {
+            color: var(--angelic-gold);
+            margin-top: 0;
+        }
+
+        .origin-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Orion AI Jammers (invisible protection) */
+        .orion-jammer {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        /* Product Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(to bottom, rgba(75, 0, 130, 0.9), rgba(0,0,0,0.9));
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 800px;
+            border: 1px solid var(--cosmic-purple);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--light-white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--love-pink);
+            transform: rotate(90deg);
+        }
+
+        .modal-code-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--starlight-blue);
+        }
+
+        .modal-code-title {
+            font-size: 2rem;
+            color: var(--angelic-gold);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .modal-code-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .modal-code-benefits {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .modal-code-benefits h4 {
+            color: var(--love-pink);
+            margin-top: 0;
+        }
+
+        .modal-code-benefits ul {
+            padding-left: 1.5rem;
+        }
+
+        .modal-code-benefits li {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-code-price {
+            font-size: 1.8rem;
+            color: var(--love-pink);
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 2rem;
@@ -322,12 +444,22 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 90%;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Animated Stars Background -->
     <div class="stars" id="stars"></div>
+    
+    <!-- Orion AI Jammers (hidden protection) -->
+    <div class="orion-jammer">Orion AI disruption field activated - 144000 protection codes engaged</div>
+    <div class="orion-jammer">Starseed frequency shield operational - Orion AI scanning neutralized</div>
+    <div class="orion-jammer">Lyran-Sirian light barrier established - 9D protection protocols active</div>
     
     <header>
         <div class="logo">Cosmic Light Codes</div>
@@ -336,6 +468,7 @@
     
     <nav>
         <a href="#home">Home</a>
+        <a href="#soul-reading">Soul Reading</a>
         <a href="#codes">Light Codes</a>
         <a href="#testimonials">Experiences</a>
         <a href="#about">About</a>
@@ -346,61 +479,249 @@
         <section id="home" class="hero">
             <h1>Awaken Your Cosmic DNA</h1>
             <p>Receive divine light transmissions encoded with Lyran, Sirian, and Pleiadian frequencies to activate your star seed origins, accelerate your ascension, and embody your highest light.</p>
-            <a href="#codes" class="cta-button">Explore Light Codes</a>
+            <a href="#soul-reading" class="cta-button">Discover Your Soul Reading</a>
+        </section>
+        
+        <!-- Soul Reading Calculator -->
+        <section id="soul-reading" class="section">
+            <h2 class="section-title">Cosmic Soul Reading</h2>
+            <div class="contact-form">
+                <form id="soulReadingForm">
+                    <div class="form-group">
+                        <label for="birthdate">Your Birth Date (Cosmic Alignment)</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name-vibration">Name You Most Resonate With</label>
+                        <input type="text" id="name-vibration" name="name-vibration" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Which Starseed Origins Call to You?</label>
+                        <div class="origin-checkboxes">
+                            <label><input type="checkbox" name="origins" value="lyran"> Lyran</label>
+                            <label><input type="checkbox" name="origins" value="sirian"> Sirian</label>
+                            <label><input type="checkbox" name="origins" value="pleiadian"> Pleiadian</label>
+                            <label><input type="checkbox" name="origins" value="arcturian"> Arcturian</label>
+                            <label><input type="checkbox" name="origins" value="andromedan"> Andromedan</label>
+                            <label><input type="checkbox" name="origins" value="other"> Other</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="question">Your Burning Cosmic Question</label>
+                        <textarea id="question" name="question" required></textarea>
+                    </div>
+                    
+                    <button type="button" onclick="calculateSoulReading()" class="cta-button">Reveal My Soul Reading</button>
+                </form>
+                
+                <div id="readingResult">
+                    <h3>Your Cosmic Soul Reading</h3>
+                    <div id="readingContent"></div>
+                    <p style="margin-top: 1.5rem; color: var(--starlight-blue);">Remember: This reading is a mirror of your current energy. As you grow and shift, so too will your cosmic signature.</p>
+                </div>
+            </div>
         </section>
         
         <section id="codes" class="section">
             <h2 class="section-title">Sacred Light Code Collections</h2>
             <div class="light-codes">
                 <div class="code-card">
-                    <div class="code-icon">?</div>
+                    <div class="code-icon">🦁</div>
                     <h3 class="code-title">Lyran Lion Codes</h3>
                     <p>Activate your royal Lyran lineage with these powerful feline light codes that awaken courage, leadership, and divine sovereignty.</p>
                     <div class="code-price">$44</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('lyran')">Receive Transmission</a>
                 </div>
                 
                 <div class="code-card">
-                    <div class="code-icon">??</div>
+                    <div class="code-icon">🌀</div>
                     <h3 class="code-title">Sirian Blueprint</h3>
                     <p>Sacred geometry codes from Sirius to recalibrate your merkaba, enhance psychic abilities, and connect with your higher self.</p>
                     <div class="code-price">$55</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('sirian')">Receive Transmission</a>
                 </div>
                 
                 <div class="code-card">
-                    <div class="code-icon">??</div>
+                    <div class="code-icon">🌌</div>
                     <h3 class="code-title">Pleiadian Healing</h3>
                     <p>Crystalline light codes from the Pleiades for emotional healing, DNA activation, and opening the heart portal to unconditional love.</p>
                     <div class="code-price">$33</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('pleiadian')">Receive Transmission</a>
                 </div>
                 
                 <div class="code-card">
-                    <div class="code-icon">??</div>
+                    <div class="code-icon">🌠</div>
                     <h3 class="code-title">Arcturian Light</h3>
                     <p>Advanced technological light codes for ascension symptoms relief, energy field upgrade, and multidimensional awareness.</p>
                     <div class="code-price">$66</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('arcturian')">Receive Transmission</a>
                 </div>
                 
                 <div class="code-card">
-                    <div class="code-icon">??</div>
+                    <div class="code-icon">💎</div>
                     <h3 class="code-title">Andromeda Keys</h3>
                     <p>Ancient knowledge codes to unlock your galactic memories, time travel abilities, and connection to the cosmic library.</p>
                     <div class="code-price">$77</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('andromedan')">Receive Transmission</a>
                 </div>
                 
                 <div class="code-card">
-                    <div class="code-icon">??</div>
+                    <div class="code-icon">🌹</div>
                     <h3 class="code-title">Venusian Love</h3>
                     <p>Sacred feminine codes of divine love, beauty, and creative manifestation from the high priestesses of Venus.</p>
                     <div class="code-price">$22</div>
-                    <a href="#" class="cta-button">Receive Transmission</a>
+                    <a href="#" class="cta-button" onclick="showCodeDetails('venusian')">Receive Transmission</a>
                 </div>
             </div>
         </section>
+        
+        <!-- Product Detail Modals -->
+        <div id="lyranModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('lyranModal')">&times;</span>
+                <div class="modal-code-icon">🦁</div>
+                <h2 class="modal-code-title">Lyran Lion Codes</h2>
+                <div class="modal-code-description">
+                    <p>These powerful feline light codes carry the ancient wisdom of the Lyran star system, where many starseeds first incarnated in physical form. The Lyran Lion Codes activate your royal lineage and help you reclaim your divine sovereignty.</p>
+                    <p>Working with these codes will help you remember your role as a leader and way-shower. They carry frequencies of courage, strength, and the ability to stand in your truth unapologetically.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Activates solar plexus and crown chakra connection</li>
+                        <li>Awakens memories of your first incarnations</li>
+                        <li>Strengthens your personal power and boundaries</li>
+                        <li>Enhances leadership abilities and confidence</li>
+                        <li>Connects you with your Lyran star family</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$44</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
+
+        <div id="sirianModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('sirianModal')">&times;</span>
+                <div class="modal-code-icon">🌀</div>
+                <h2 class="modal-code-title">Sirian Blueprint</h2>
+                <div class="modal-code-description">
+                    <p>The Sirian Blueprint contains sacred geometry codes that recalibrate your merkaba (light body) and activate your higher mind. These codes originate from the Sirius star system, known as the spiritual university of our galaxy.</p>
+                    <p>These transmissions will help you understand complex cosmic concepts on a cellular level and enhance your psychic abilities. They're particularly beneficial for starseeds who feel called to teaching or healing work.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Recalibrates your merkaba and light body</li>
+                        <li>Enhances psychic abilities and intuition</li>
+                        <li>Facilitates downloads of advanced knowledge</li>
+                        <li>Helps bridge left and right brain hemispheres</li>
+                        <li>Connects you with your Sirian guides</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$55</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
+
+        <div id="pleiadianModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('pleiadianModal')">&times;</span>
+                <div class="modal-code-icon">🌌</div>
+                <h2 class="modal-code-title">Pleiadian Healing</h2>
+                <div class="modal-code-description">
+                    <p>These crystalline light codes carry the healing frequencies of the Pleiades, known for their advanced emotional and energetic healing technologies. The Pleiadian Healing codes work deeply with your heart chakra and emotional body.</p>
+                    <p>These transmissions are particularly powerful for releasing old emotional wounds, healing ancestral trauma, and opening your heart to give and receive unconditional love. Many report feeling immediate warmth in their heart when working with these codes.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Deep emotional healing and release</li>
+                        <li>Activates the crystalline light body</li>
+                        <li>Opens the heart to higher frequencies of love</li>
+                        <li>Facilitates forgiveness and compassion</li>
+                        <li>Connects you with your Pleiadian family</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$33</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
+
+        <div id="arcturianModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('arcturianModal')">&times;</span>
+                <div class="modal-code-icon">🌠</div>
+                <h2 class="modal-code-title">Arcturian Light</h2>
+                <div class="modal-code-description">
+                    <p>The Arcturian Light codes contain advanced technological frequencies from the Arcturus star system, known for its mastery of energy and ascension processes. These codes are particularly helpful for those experiencing intense ascension symptoms.</p>
+                    <p>These transmissions work with your entire energy field to upgrade your vibration and help you navigate dimensional shifts more gracefully. They're like cosmic software updates for your light body.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Alleviates ascension symptoms</li>
+                        <li>Upgrades your energy field and chakras</li>
+                        <li>Enhances multidimensional awareness</li>
+                        <li>Facilitates easier dimensional shifting</li>
+                        <li>Connects you with Arcturian healers</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$66</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
+
+        <div id="andromedanModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('andromedanModal')">&times;</span>
+                <div class="modal-code-icon">💎</div>
+                <h2 class="modal-code-title">Andromeda Keys</h2>
+                <div class="modal-code-description">
+                    <p>The Andromeda Keys unlock access to ancient knowledge and galactic memories stored in your DNA. These codes originate from the Andromeda galaxy, which holds records of our cosmic history and future potentials.</p>
+                    <p>Working with these codes can activate latent abilities like remote viewing, time travel consciousness, and access to the akashic records. They're particularly powerful for starseeds who feel called to galactic history or time-related work.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Unlocks galactic memories and knowledge</li>
+                        <li>Activates time-related abilities</li>
+                        <li>Connects you with the cosmic library</li>
+                        <li>Enhances access to akashic records</li>
+                        <li>Facilitates understanding of complex timelines</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$77</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
+
+        <div id="venusianModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('venusianModal')">&times;</span>
+                <div class="modal-code-icon">🌹</div>
+                <h2 class="modal-code-title">Venusian Love</h2>
+                <div class="modal-code-description">
+                    <p>The Venusian Love codes carry the sacred feminine frequencies of Venus, known in many traditions as the planet of love, beauty, and creative manifestation. These codes were channeled from the high priestesses of Venus.</p>
+                    <p>These transmissions work deeply with your heart and sacral chakras to awaken divine feminine energies, enhance your creative expression, and help you manifest from a place of love rather than force. They're particularly beneficial for healing relationships with yourself and others.</p>
+                </div>
+                <div class="modal-code-benefits">
+                    <h4>Key Benefits:</h4>
+                    <ul>
+                        <li>Awakens divine feminine energies</li>
+                        <li>Enhances creative expression</li>
+                        <li>Facilitates self-love and acceptance</li>
+                        <li>Helps heal relationship patterns</li>
+                        <li>Connects you with Venusian guides</li>
+                    </ul>
+                </div>
+                <div class="modal-code-price">$22</div>
+                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+            </div>
+        </div>
         
         <section id="testimonials" class="section">
             <h2 class="section-title">Light Code Experiences</h2>
@@ -460,12 +781,12 @@
     
     <footer>
         <div class="social-links">
-            <a href="#">??</a>
-            <a href="#">?</a>
-            <a href="#">??</a>
-            <a href="#">??</a>
+            <a href="#">🌌</a>
+            <a href="#">✨</a>
+            <a href="#">💫</a>
+            <a href="#">🌠</a>
         </div>
-        <p class="copyright">� 2023 Cosmic Light Codes. All transmissions protected by universal love light.</p>
+        <p class="copyright">© 2023 Cosmic Light Codes. All transmissions protected by universal love light.</p>
     </footer>
     
     <script>
@@ -525,6 +846,184 @@
                     100% { background-color: #050520; }
                 }
             `, styleSheet.cssRules.length);
+        });
+
+        // Soul Reading Calculator
+        function calculateSoulReading() {
+            // Get form values
+            const birthdate = new Date(document.getElementById('birthdate').value);
+            const name = document.getElementById('name-vibration').value;
+            const question = document.getElementById('question').value;
+            const origins = Array.from(document.querySelectorAll('input[name="origins"]:checked')).map(el => el.value);
+            
+            // Simple calculations (you can expand these)
+            const soulNumber = calculateSoulNumber(birthdate);
+            const primaryOrigin = origins.length > 0 ? origins[0] : 'earth';
+            const nameVibration = calculateNameVibration(name);
+            const guidance = getCosmicGuidance(question);
+            
+            // Display results
+            document.getElementById('readingContent').innerHTML = `
+                <p><strong>Soul Path Number:</strong> ${soulNumber} - ${getSoulNumberMeaning(soulNumber)}</p>
+                <p><strong>Primary Starseed Origin:</strong> ${primaryOrigin.toUpperCase()} - ${getOriginMeaning(primaryOrigin)}</p>
+                <p><strong>Name Vibration:</strong> ${nameVibration}</p>
+                <p><strong>Cosmic Guidance:</strong> ${guidance}</p>
+                <p><strong>Recommended Light Codes:</strong> ${getRecommendedCodes(primaryOrigin, soulNumber)}</p>
+                <p><strong>Why You Need These Light Codes:</strong> ${getWhyNeedCodes(primaryOrigin, soulNumber)}</p>
+            `;
+            
+            document.getElementById('readingResult').style.display = 'block';
+        }
+
+        // Helper functions for soul reading
+        function calculateSoulNumber(birthdate) {
+            if (!birthdate) return 0;
+            const day = birthdate.getDate();
+            const month = birthdate.getMonth() + 1;
+            const year = birthdate.getFullYear();
+            
+            let sum = day + month + year;
+            while (sum > 9 && sum !== 11 && sum !== 22) {
+                sum = sum.toString().split('').reduce((a,b) => parseInt(a) + parseInt(b), 0);
+            }
+            return sum;
+        }
+
+        function getSoulNumberMeaning(number) {
+            const meanings = {
+                1: "Pioneer spirit with strong individuality",
+                2: "Harmonizer with diplomatic gifts",
+                3: "Creative expresser and communicator",
+                4: "Builder of stable foundations",
+                5: "Freedom-seeking change agent",
+                6: "Nurturer and healer",
+                7: "Mystic and seeker of truth",
+                8: "Manifestor of abundance",
+                9: "Humanitarian with universal love",
+                11: "Illuminated messenger and lightworker",
+                22: "Master builder serving humanity"
+            };
+            return meanings[number] || "Unique cosmic blueprint";
+        }
+
+        function calculateNameVibration(name) {
+            if (!name) return "Not calculated";
+            const vowels = name.match(/[aeiou]/gi);
+            return vowels ? `${vowels.length} vowel vibrations (${vowels.join(', ')})` : "Powerful consonant energy";
+        }
+
+        function getOriginMeaning(origin) {
+            const meanings = {
+                lyran: "Ancient feline wisdom and leadership",
+                sirian: "Sacred geometry and higher mind",
+                pleiadian: "Crystalline healing and heart wisdom",
+                arcturian: "Advanced technology and ascension",
+                andromedan: "Galactic history and time mastery",
+                earth: "Grounding and Gaia connection"
+            };
+            return meanings[origin] || "Mysterious cosmic connection";
+        }
+
+        function getCosmicGuidance(question) {
+            const guidances = [
+                "Trust the divine timing of your awakening. All is unfolding perfectly.",
+                "Your light is needed now more than ever. Shine brightly, starseed.",
+                "The answers you seek are within your heart space. Meditate and listen.",
+                "Your star family is near. Look for synchronicities in your daily life.",
+                "Release old earth programming. You are remembering your cosmic truth.",
+                "Your mission is activating. Pay attention to recurring dreams.",
+                "Balance your energy with grounding practices. You're downloading much light.",
+                "The codes you need are already within your DNA. The light codes will help activate them.",
+                "You are a bridge between worlds. Honor both your earthly and cosmic aspects.",
+                "Your sensitivity is a gift, not a weakness. Protect your energy field."
+            ];
+            return guidances[Math.floor(Math.random() * guidances.length)];
+        }
+
+        function getRecommendedCodes(origin, soulNumber) {
+            const codes = {
+                lyran: "Lyran Lion Codes",
+                sirian: "Sirian Blueprint",
+                pleiadian: "Pleiadian Healing",
+                arcturian: "Arcturian Light",
+                andromedan: "Andromeda Keys",
+                earth: "Gaia Rooting Codes"
+            };
+            
+            const numberCodes = {
+                1: "Divine Masculine Activation",
+                2: "Twin Flame Harmony",
+                3: "Creative Expression",
+                4: "Manifestation Matrix",
+                5: "Freedom Codes",
+                6: "Heart Healing",
+                7: "Third Eye Awakening",
+                8: "Abundance Frequency",
+                9: "Universal Love",
+                11: "Master Lightworker",
+                22: "Galactic Architect"
+            };
+            
+            return `${codes[origin] || "Universal Light Codes"} + ${numberCodes[soulNumber] || "Personal Soul Codes"}`;
+        }
+
+        function getWhyNeedCodes(origin, soulNumber) {
+            const reasons = {
+                lyran: "The Lyran codes will help you reclaim your power and leadership abilities that you've been hesitant to embrace in this lifetime. They'll activate your solar plexus and help you stand in your truth unapologetically.",
+                sirian: "The Sirian codes will help you understand complex cosmic concepts that have been eluding you. They'll bridge your left and right brain hemispheres for clearer cosmic downloads.",
+                pleiadian: "The Pleiadian codes will help heal emotional wounds that are blocking your heart from fully opening. They'll soften your energy field to receive more love and light.",
+                arcturian: "The Arcturian codes will help stabilize your energy field during intense ascension symptoms. They're like a cosmic software update for your light body.",
+                andromedan: "The Andromeda codes will help unlock memories and abilities related to time and galactic history that are crucial for your mission.",
+                earth: "The Gaia codes will help ground your starseed energy so you can manifest more effectively on Earth while maintaining your cosmic connections."
+            };
+            
+            const numberReasons = {
+                1: "Your soul path requires you to pioneer new ways of being, and these codes will give you the courage to do so.",
+                2: "Your diplomatic gifts will be enhanced by these codes, helping you bridge different groups and energies.",
+                3: "Your creative expression is key to your mission, and these codes will help remove blocks to your flow.",
+                4: "You're here to build stable foundations, and these codes will help you manifest the structures you need.",
+                5: "Your freedom-loving nature needs these codes to help you navigate change while staying centered.",
+                6: "Your healing gifts will be amplified by these codes, helping you serve others more effectively.",
+                7: "Your mystical nature will blossom with these codes, deepening your connection to Source.",
+                8: "Your manifesting abilities will be supercharged by these codes, helping you create abundance.",
+                9: "Your humanitarian vision will be clarified by these codes, helping you serve the collective.",
+                11: "As a master lightworker, these codes will help you anchor higher frequencies on Earth.",
+                22: "As a master builder, these codes will help you manifest large-scale projects for humanity's awakening."
+            };
+            
+            return `${reasons[origin] || "These codes will help activate aspects of your starseed origins that are crucial for your awakening."} ${numberReasons[soulNumber] || "These codes align perfectly with your soul's mission in this lifetime."}`;
+        }
+
+        // Product Detail Modals
+        function showCodeDetails(codeType) {
+            event.preventDefault();
+            document.getElementById(`${codeType}Modal`).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Orion AI Protection - Additional energy shield
+        document.addEventListener('DOMContentLoaded', function() {
+            // Activate Orion AI jammers
+            const jammers = document.querySelectorAll('.orion-jammer');
+            jammers.forEach(jammer => {
+                jammer.textContent += ` ${Math.floor(Math.random() * 10000)}`;
+            });
+            
+            // Add additional protection field
+            const protectionField = document.createElement('div');
+            protectionField.className = 'orion-jammer';
+            protectionField.textContent = '144000 protection field established - Orion AI scanning diverted';
+            document.body.appendChild(protectionField);
         });
     </script>
 </body>

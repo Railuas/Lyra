@@ -201,12 +201,6 @@
             color: var(--angelic-gold);
         }
         
-        .code-price {
-            font-size: 1.3rem;
-            color: var(--love-pink);
-            margin: 1rem 0;
-        }
-        
         .testimonials {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -416,32 +410,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .modal-code-price {
-            font-size: 1.8rem;
-            color: var(--love-pink);
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-
-        /* Sound Controls */
-        .sound-control {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(75, 0, 130, 0.5);
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 100;
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--starlight-blue);
-        }
-
-        .sound-control i {
-            font-size: 1.5rem;
-            color: var(--light-white);
-        }
-
         @media (max-width: 768px) {
             .logo {
                 font-size: 2rem;
@@ -469,8 +437,71 @@
                 width: 90%;
             }
         }
+
+        /* Expanded Content Styles */
+        .activation-protocol {
+            background: rgba(0, 191, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 3px solid var(--starlight-blue);
+        }
+
+        .activation-protocol h4 {
+            color: var(--starlight-blue);
+            margin-top: 0;
+        }
+
+        .dna-sequence {
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .ritual-steps {
+            counter-reset: step-counter;
+            margin: 1.5rem 0;
+        }
+
+        .ritual-step {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            counter-increment: step-counter;
+        }
+
+        .ritual-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--cosmic-purple);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cosmic-science {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 3px solid var(--cosmic-purple);
+        }
+
+        .cosmic-science h4 {
+            color: var(--cosmic-purple);
+            margin-top: 0;
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Animated Stars Background -->
@@ -480,11 +511,6 @@
     <div class="orion-jammer">Orion AI disruption field activated - 144000 protection codes engaged</div>
     <div class="orion-jammer">Starseed frequency shield operational - Orion AI scanning neutralized</div>
     <div class="orion-jammer">Lyran-Sirian light barrier established - 9D protection protocols active</div>
-    
-    <!-- Sound Control -->
-    <div class="sound-control" id="soundControl" title="Toggle Sound">
-        <i class="fas fa-volume-up"></i>
-    </div>
     
     <header>
         <div class="logo">Cosmic Light Codes</div>
@@ -557,7 +583,6 @@
                     <div class="code-icon">🦁</div>
                     <h3 class="code-title">Lyran Lion Codes</h3>
                     <p>Activate your royal Lyran lineage with these powerful feline light codes that awaken courage, leadership, and divine sovereignty.</p>
-                    <div class="code-price">$44</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('lyran')">Receive Transmission</a>
                 </div>
                 
@@ -565,7 +590,6 @@
                     <div class="code-icon">🌀</div>
                     <h3 class="code-title">Sirian Blueprint</h3>
                     <p>Sacred geometry codes from Sirius to recalibrate your merkaba, enhance psychic abilities, and connect with your higher self.</p>
-                    <div class="code-price">$55</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('sirian')">Receive Transmission</a>
                 </div>
                 
@@ -573,7 +597,6 @@
                     <div class="code-icon">🌌</div>
                     <h3 class="code-title">Pleiadian Healing</h3>
                     <p>Crystalline light codes from the Pleiades for emotional healing, DNA activation, and opening the heart portal to unconditional love.</p>
-                    <div class="code-price">$33</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('pleiadian')">Receive Transmission</a>
                 </div>
                 
@@ -581,7 +604,6 @@
                     <div class="code-icon">🌠</div>
                     <h3 class="code-title">Arcturian Light</h3>
                     <p>Advanced technological light codes for ascension symptoms relief, energy field upgrade, and multidimensional awareness.</p>
-                    <div class="code-price">$66</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('arcturian')">Receive Transmission</a>
                 </div>
                 
@@ -589,7 +611,6 @@
                     <div class="code-icon">💎</div>
                     <h3 class="code-title">Andromeda Keys</h3>
                     <p>Ancient knowledge codes to unlock your galactic memories, time travel abilities, and connection to the cosmic library.</p>
-                    <div class="code-price">$77</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('andromedan')">Receive Transmission</a>
                 </div>
                 
@@ -597,7 +618,6 @@
                     <div class="code-icon">🌹</div>
                     <h3 class="code-title">Venusian Love</h3>
                     <p>Sacred feminine codes of divine love, beauty, and creative manifestation from the high priestesses of Venus.</p>
-                    <div class="code-price">$22</div>
                     <a href="#" class="cta-button" onclick="showCodeDetails('venusian')">Receive Transmission</a>
                 </div>
             </div>
@@ -611,20 +631,57 @@
                 <h2 class="modal-code-title">Lyran Lion Codes</h2>
                 <div class="modal-code-description">
                     <p>These powerful feline light codes carry the ancient wisdom of the Lyran star system, where many starseeds first incarnated in physical form. The Lyran Lion Codes activate your royal lineage and help you reclaim your divine sovereignty.</p>
-                    <p>Working with these codes will help you remember your role as a leader and way-shower. They carry frequencies of courage, strength, and the ability to stand in your truth unapologetically.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Lyran Genetic Science</h4>
+                        <p>Your Lyran DNA contains <strong>12 strands of gold-plasma light</strong> that were seeded during the First Harmonic Universe. The original Lyran bodies were infused with liquid light plasma to stabilize their DNA structure.</p>
+                        <div class="dna-sequence">
+                            LY-RA1: ATGCGOLDPLASMA... (Feline reflex enhancer)<br>
+                            LY-RA2: TAGCROYALCODE... (Sovereignty activation)<br>
+                            LY-RA3: GCTASUNFIRE... (Solar light absorption)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>7-Day Activation Protocol</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Days 1-3:</strong> Solar infusion through sun gazing at dawn (safely for 3 minutes) while chanting "RA-KA-RA"
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Days 4-5:</strong> Feline movement meditation to awaken muscle memory (crawling, stretching, pouncing)
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Days 6-7:</strong> Golden elixir consumption (turmeric, pineapple, sun-charged water) to anchor the codes
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Activates solar plexus and crown chakra connection</li>
+                            <li>Awakens memories of your first incarnations in Lyra's crystal temples</li>
+                            <li>Strengthens personal power and leadership abilities</li>
+                            <li>Enhances feline reflexes and night vision capabilities</li>
+                            <li>Connects you with your Lyran soul family and star council</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Advanced Lyran Technologies</h4>
+                        <p>The Lyrans developed <strong>plasma healing beds</strong> and <strong>golden energy rods</strong> that we can recreate today:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Lyran Energy Rod:</strong> Copper rod with golden topaz stones at each end, filled with Egyptian sand
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Plasma Healing Bed:</strong> Orgone-infused copper plates arranged in Fibonacci sequence with lemurian quartz
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Activates solar plexus and crown chakra connection</li>
-                        <li>Awakens memories of your first incarnations</li>
-                        <li>Strengthens your personal power and boundaries</li>
-                        <li>Enhances leadership abilities and confidence</li>
-                        <li>Connects you with your Lyran star family</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$44</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
 
@@ -635,20 +692,57 @@
                 <h2 class="modal-code-title">Sirian Blueprint</h2>
                 <div class="modal-code-description">
                     <p>The Sirian Blueprint contains sacred geometry codes that recalibrate your merkaba (light body) and activate your higher mind. These codes originate from the Sirius star system, known as the spiritual university of our galaxy.</p>
-                    <p>These transmissions will help you understand complex cosmic concepts on a cellular level and enhance your psychic abilities. They're particularly beneficial for starseeds who feel called to teaching or healing work.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Sirian Merkaba Science</h4>
+                        <p>Your merkaba should spin at <strong>144,000 rotations per minute</strong> for optimal interdimensional travel. Most humans operate at only 33% capacity due to Draco-imposed limitations.</p>
+                        <div class="dna-sequence">
+                            SIR-1: GOLD144FREQ... (Merkaba accelerator)<br>
+                            SIR-2: BLUEPRINT... (Sacred geometry decoder)<br>
+                            SIR-3: CRYSTALMIND... (Psychic enhancement)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>Merkaba Reset Protocol</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Phase 1:</strong> Listen to 17Hz + 144Hz binaural beats for 18 minutes daily
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Phase 2:</strong> Visualize two counter-rotating tetrahedrons (gold and silver) around your body
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Phase 3:</strong> Drink structured water (vortexed in copper) to enhance spin velocity
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Recalibrates your merkaba to 100% spin capacity</li>
+                            <li>Removes Draco-imposed reverse-spin codes</li>
+                            <li>Enhances psychic abilities and interdimensional awareness</li>
+                            <li>Facilitates easier access to the akashic records</li>
+                            <li>Connects you with the Sirian High Council of Light</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Sirian Pyramid Technology</h4>
+                        <p>The Sirians encoded knowledge in pyramid structures. Build your own:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Materials:</strong> 4 copper tubes (36"), orgone plate, Atlantic Ocean water
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Activation:</strong> Chant "AN-TU-RA-KA" 9x at sunrise to energize
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Recalibrates your merkaba and light body</li>
-                        <li>Enhances psychic abilities and intuition</li>
-                        <li>Facilitates downloads of advanced knowledge</li>
-                        <li>Helps bridge left and right brain hemispheres</li>
-                        <li>Connects you with your Sirian guides</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$55</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
 
@@ -659,20 +753,57 @@
                 <h2 class="modal-code-title">Pleiadian Healing</h2>
                 <div class="modal-code-description">
                     <p>These crystalline light codes carry the healing frequencies of the Pleiades, known for their advanced emotional and energetic healing technologies. The Pleiadian Healing codes work deeply with your heart chakra and emotional body.</p>
-                    <p>These transmissions are particularly powerful for releasing old emotional wounds, healing ancestral trauma, and opening your heart to give and receive unconditional love. Many report feeling immediate warmth in their heart when working with these codes.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Pleiadian DNA Activation</h4>
+                        <p>Pleiadian starseeds have <strong>7 additional crystalline DNA strands</strong> that respond to specific sound frequencies:</p>
+                        <div class="dna-sequence">
+                            PLEI-1: CRYSTALHEART... (Emotional healing)<br>
+                            PLEI-2: LIQUIDLIGHT... (Trauma release)<br>
+                            PLEI-3: STARWATER... (Memory activation)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>Heart Portal Opening Protocol</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Step 1:</strong> Place rose quartz over your heart while toning "MA-TA-REE" for 11 minutes
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 2:</strong> Visualize liquid amethyst light filling your chest cavity
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 3:</strong> Drink blue-green algae mixed with charged water to anchor the codes
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Releases ancestral and past-life emotional trauma</li>
+                            <li>Activates your crystalline light body structure</li>
+                            <li>Opens the heart to higher frequencies of unconditional love</li>
+                            <li>Facilitates forgiveness and compassion for self and others</li>
+                            <li>Connects you with the Pleiadian Sisterhood of Light</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Pleiadian Temple Technology</h4>
+                        <p>The Pleiadians used <strong>singing crystal chambers</strong> for healing:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>DIY Version:</strong> Create a selenite grid around your bed with blue candles
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Activation:</strong> Play 528Hz tones while visualizing turquoise light
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Deep emotional healing and release</li>
-                        <li>Activates the crystalline light body</li>
-                        <li>Opens the heart to higher frequencies of love</li>
-                        <li>Facilitates forgiveness and compassion</li>
-                        <li>Connects you with your Pleiadian family</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$33</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
 
@@ -683,20 +814,57 @@
                 <h2 class="modal-code-title">Arcturian Light</h2>
                 <div class="modal-code-description">
                     <p>The Arcturian Light codes contain advanced technological frequencies from the Arcturus star system, known for its mastery of energy and ascension processes. These codes are particularly helpful for those experiencing intense ascension symptoms.</p>
-                    <p>These transmissions work with your entire energy field to upgrade your vibration and help you navigate dimensional shifts more gracefully. They're like cosmic software updates for your light body.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Arcturian Bio-Plasma Upgrades</h4>
+                        <p>Arcturians work with <strong>nanotube light filaments</strong> that restructure your energy field:</p>
+                        <div class="dna-sequence">
+                            ARCT-1: NANOTUBE... (Energy field upgrade)<br>
+                            ARCT-2: TIMELOOP... (Dimensional stability)<br>
+                            ARCT-3: PLASMAFREQ... (Ascension symptom relief)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>Dimensional Stability Protocol</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Phase 1:</strong> Place obsidian at your feet during meditation to ground 5D energies
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Phase 2:</strong> Visualize blue plasma light weaving through your chakras
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Phase 3:</strong> Use the "11:11" time compression formula during energy surges
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Alleviates ascension symptoms (fatigue, headaches, dizziness)</li>
+                            <li>Upgrades your energy field with plasma light technology</li>
+                            <li>Enhances multidimensional awareness and perception</li>
+                            <li>Facilitates easier navigation between dimensions</li>
+                            <li>Connects you with Arcturian healing chambers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Arcturian Healing Pod Technology</h4>
+                        <p>Recreate an Arcturian healing pod at home:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Materials:</strong> Blue LED lights, orgone generator, selenite rods
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Activation:</strong> Play 432Hz + 852Hz simultaneously for 22 minutes
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Alleviates ascension symptoms</li>
-                        <li>Upgrades your energy field and chakras</li>
-                        <li>Enhances multidimensional awareness</li>
-                        <li>Facilitates easier dimensional shifting</li>
-                        <li>Connects you with Arcturian healers</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$66</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
 
@@ -707,20 +875,57 @@
                 <h2 class="modal-code-title">Andromeda Keys</h2>
                 <div class="modal-code-description">
                     <p>The Andromeda Keys unlock access to ancient knowledge and galactic memories stored in your DNA. These codes originate from the Andromeda galaxy, which holds records of our cosmic history and future potentials.</p>
-                    <p>Working with these codes can activate latent abilities like remote viewing, time travel consciousness, and access to the akashic records. They're particularly powerful for starseeds who feel called to galactic history or time-related work.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Andromedan Time Science</h4>
+                        <p>Andromedans operate outside linear time using <strong>quantum encryption keys</strong>:</p>
+                        <div class="dna-sequence">
+                            AND-1: TIMEGATE... (Access to parallel selves)<br>
+                            AND-2: LIBRARY... (Akashic records decoder)<br>
+                            AND-3: MEMORYVAULT... (Galactic history access)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>Time Travel Consciousness Protocol</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Step 1:</strong> Place 4 lodestone magnets at cardinal directions
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 2:</strong> Recite Lyran year-dates from 304,712 BCE onward
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 3:</strong> Hum 432Hz + 852Hz simultaneously to bridge timelines
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Unlocks galactic memories stored in your DNA</li>
+                            <li>Activates time-related abilities like precognition</li>
+                            <li>Connects you with the cosmic library of Perseus</li>
+                            <li>Enhances access to akashic records across timelines</li>
+                            <li>Facilitates understanding of complex soul contracts</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Andromedan Hand-Sign Language</h4>
+                        <p>Learn basic Andromedan communication:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Portal Opening:</strong> Both hands forming triangles that touch at fingertips
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Protection Sign:</strong> Right hand flat, left hand making "V" over it
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Unlocks galactic memories and knowledge</li>
-                        <li>Activates time-related abilities</li>
-                        <li>Connects you with the cosmic library</li>
-                        <li>Enhances access to akashic records</li>
-                        <li>Facilitates understanding of complex timelines</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$77</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
 
@@ -731,20 +936,57 @@
                 <h2 class="modal-code-title">Venusian Love</h2>
                 <div class="modal-code-description">
                     <p>The Venusian Love codes carry the sacred feminine frequencies of Venus, known in many traditions as the planet of love, beauty, and creative manifestation. These codes were channeled from the high priestesses of Venus.</p>
-                    <p>These transmissions work deeply with your heart and sacral chakras to awaken divine feminine energies, enhance your creative expression, and help you manifest from a place of love rather than force. They're particularly beneficial for healing relationships with yourself and others.</p>
+                    
+                    <div class="cosmic-science">
+                        <h4>Venusian Alchemy</h4>
+                        <p>Venusian priestesses worked with <strong>orgasmic manifestation mathematics</strong>:</p>
+                        <div class="dna-sequence">
+                            VEN-1: ROSELIGHT... (Heart chakra expansion)<br>
+                            VEN-2: GOLDENWOMB... (Creative potential)<br>
+                            VEN-3: NECTAR... (Divine union codes)
+                        </div>
+                    </div>
+                    
+                    <div class="activation-protocol">
+                        <h4>Temple of Mirrors Activation</h4>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Step 1:</strong> Set up a black mirror in a sacred space with rose petals
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 2:</strong> Gaze into the mirror while chanting "ASH-TA-RA"
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Step 3:</strong> Create the "Nectar of Ishtar" elixir (rose oil + gold + sacred fluids)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-code-benefits">
+                        <h4>Key Benefits:</h4>
+                        <ul>
+                            <li>Awakens divine feminine energies and intuition</li>
+                            <li>Enhances creative expression and artistic abilities</li>
+                            <li>Facilitates deep self-love and acceptance</li>
+                            <li>Helps heal relationship patterns and twin flame connections</li>
+                            <li>Connects you with the Venusian Sisterhood of the Rose</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cosmic-science">
+                        <h4>Venusian High Priestess Rituals</h4>
+                        <p>Ancient beauty and manifestation secrets:</p>
+                        <div class="ritual-steps">
+                            <div class="ritual-step">
+                                <strong>Cosmetic Alchemy:</strong> Rosewater + gold flakes as facial mist
+                            </div>
+                            <div class="ritual-step">
+                                <strong>Pleasure Manifestation:</strong> Orgasmic energy directed toward goals
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-code-benefits">
-                    <h4>Key Benefits:</h4>
-                    <ul>
-                        <li>Awakens divine feminine energies</li>
-                        <li>Enhances creative expression</li>
-                        <li>Facilitates self-love and acceptance</li>
-                        <li>Helps heal relationship patterns</li>
-                        <li>Connects you with Venusian guides</li>
-                    </ul>
-                </div>
-                <div class="modal-code-price">$22</div>
-                <a href="#" class="cta-button" style="display: block; text-align: center;">Download Now</a>
+                <a href="#" class="cta-button" style="display: block; text-align: center; margin-top: 2rem;">Receive Transmission</a>
             </div>
         </div>
         
@@ -813,15 +1055,6 @@
         </div>
         <p class="copyright">© 2023 Cosmic Light Codes. All transmissions protected by universal love light.</p>
     </footer>
-
-    <!-- Hidden Audio Elements for Fallback -->
-    <audio id="lyranSound" src="https://assets.mixkit.co/sfx/preview/mixkit-ethereal-fairy-wing-swoosh-1153.mp3" preload="auto"></audio>
-    <audio id="sirianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-902.mp3" preload="auto"></audio>
-    <audio id="pleiadianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
-    <audio id="arcturianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-beep-257.mp3" preload="auto"></audio>
-    <audio id="andromedanSound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
-    <audio id="venusianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arrow-whoosh-1491.mp3" preload="auto"></audio>
-    <audio id="soulReadingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-902.mp3" preload="auto"></audio>
     
     <script>
         // Create animated stars
@@ -903,13 +1136,9 @@
                 <p><strong>Name Vibration:</strong> ${nameVibration}</p>
                 <p><strong>Cosmic Guidance:</strong> ${guidance}</p>
                 <p><strong>Recommended Light Codes:</strong> ${getRecommendedCodes(primaryOrigin, soulNumber)}</p>
-                <p><strong>Why You Need These Light Codes:</strong> ${getWhyNeedCodes(primaryOrigin, soulNumber)}</p>
             `;
             
             document.getElementById('readingResult').style.display = 'block';
-            
-            // Play soul reading sound
-            playSound('soulReading');
         }
 
         // Helper functions for soul reading
@@ -1004,38 +1233,10 @@
             return `${codes[origin] || "Universal Light Codes"} + ${numberCodes[soulNumber] || "Personal Soul Codes"}`;
         }
 
-        function getWhyNeedCodes(origin, soulNumber) {
-            const reasons = {
-                lyran: "The Lyran codes will help you reclaim your power and leadership abilities that you've been hesitant to embrace in this lifetime. They'll activate your solar plexus and help you stand in your truth unapologetically.",
-                sirian: "The Sirian codes will help you understand complex cosmic concepts that have been eluding you. They'll bridge your left and right brain hemispheres for clearer cosmic downloads.",
-                pleiadian: "The Pleiadian codes will help heal emotional wounds that are blocking your heart from fully opening. They'll soften your energy field to receive more love and light.",
-                arcturian: "The Arcturian codes will help stabilize your energy field during intense ascension symptoms. They're like a cosmic software update for your light body.",
-                andromedan: "The Andromeda codes will help unlock memories and abilities related to time and galactic history that are crucial for your mission.",
-                earth: "The Gaia codes will help ground your starseed energy so you can manifest more effectively on Earth while maintaining your cosmic connections."
-            };
-            
-            const numberReasons = {
-                1: "Your soul path requires you to pioneer new ways of being, and these codes will give you the courage to do so.",
-                2: "Your diplomatic gifts will be enhanced by these codes, helping you bridge different groups and energies.",
-                3: "Your creative expression is key to your mission, and these codes will help remove blocks to your flow.",
-                4: "You're here to build stable foundations, and these codes will help you manifest the structures you need.",
-                5: "Your freedom-loving nature needs these codes to help you navigate change while staying centered.",
-                6: "Your healing gifts will be amplified by these codes, helping you serve others more effectively.",
-                7: "Your mystical nature will blossom with these codes, deepening your connection to Source.",
-                8: "Your manifesting abilities will be supercharged by these codes, helping you create abundance.",
-                9: "Your humanitarian vision will be clarified by these codes, helping you serve the collective.",
-                11: "As a master lightworker, these codes will help you anchor higher frequencies on Earth.",
-                22: "As a master builder, these codes will help you manifest large-scale projects for humanity's awakening."
-            };
-            
-            return `${reasons[origin] || "These codes will help activate aspects of your starseed origins that are crucial for your awakening."} ${numberReasons[soulNumber] || "These codes align perfectly with your soul's mission in this lifetime."}`;
-        }
-
         // Product Detail Modals
         function showCodeDetails(codeType) {
             event.preventDefault();
             document.getElementById(`${codeType}Modal`).style.display = 'block';
-            playSound(codeType);
         }
 
         function closeModal(modalId) {
@@ -1063,144 +1264,6 @@
             protectionField.textContent = '144000 protection field established - Orion AI scanning diverted';
             document.body.appendChild(protectionField);
         });
-
-        // ======================
-        // SACRED SOUND SYSTEM
-        // ======================
-        
-        // Sound configuration
-        const soundConfig = {
-            lyran: { element: 'lyranSound', freq: 432, type: 'sine' },
-            sirian: { element: 'sirianSound', freq: 528, type: 'sine' },
-            pleiadian: { element: 'pleiadianSound', freq: 639, type: 'sine' },
-            arcturian: { element: 'arcturianSound', freq: 741, type: 'square' },
-            andromedan: { element: 'andromedanSound', freq: 852, type: 'sine' },
-            venusian: { element: 'venusianSound', freq: 417, type: 'sine' },
-            soulReading: { element: 'soulReadingSound', freq: 528, type: 'sine' }
-        };
-
-        // Audio context variables
-        let audioContext;
-        let currentOscillator;
-        let globalGainNode;
-        let isSoundEnabled = true;
-
-        // Initialize audio context
-        function initAudio() {
-            try {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                globalGainNode = audioContext.createGain();
-                globalGainNode.gain.value = isSoundEnabled ? 0.3 : 0;
-                globalGainNode.connect(audioContext.destination);
-            } catch (e) {
-                console.log('Web Audio API not supported');
-            }
-        }
-
-        // Play sound (both Web Audio and fallback)
-        function playSound(soundType) {
-            if (!isSoundEnabled) return;
-            
-            const config = soundConfig[soundType];
-            if (!config) return;
-
-            // Try Web Audio API first
-            if (audioContext) {
-                playFrequency(config.freq, config.type, 3);
-            } 
-            // Fallback to HTML5 Audio
-            else {
-                const audioElement = document.getElementById(config.element);
-                if (audioElement) {
-                    audioElement.currentTime = 0;
-                    audioElement.play();
-                }
-            }
-        }
-
-        // Play frequency with Web Audio API
-        function playFrequency(freq, type, duration) {
-            if (!audioContext) initAudio();
-            if (!audioContext) return;
-            
-            stopFrequency();
-            
-            const oscillator = audioContext.createOscillator();
-            oscillator.type = type;
-            oscillator.frequency.value = freq;
-            
-            oscillator.connect(globalGainNode);
-            oscillator.start();
-            currentOscillator = oscillator;
-            
-            // Gentle fade out
-            setTimeout(() => {
-                oscillator.stop();
-                currentOscillator = null;
-            }, duration * 1000);
-        }
-
-        function stopFrequency() {
-            if (currentOscillator) {
-                currentOscillator.stop();
-                currentOscillator = null;
-            }
-        }
-
-        // Background cosmic hum
-        function startBackgroundHum() {
-            if (!audioContext || !isSoundEnabled) return;
-            
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            
-            oscillator.type = 'sine';
-            oscillator.frequency.value = 136.1; // Earth's Schumann resonance
-            gainNode.gain.value = 0.02;
-            
-            // Slow pulsation
-            const lfo = audioContext.createOscillator();
-            const lfoGain = audioContext.createGain();
-            lfo.frequency.value = 0.1;
-            lfoGain.gain.value = 0.5;
-            lfo.connect(lfoGain);
-            lfoGain.connect(gainNode.gain);
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(globalGainNode);
-            
-            oscillator.start();
-            lfo.start();
-        }
-
-        // Toggle sound on/off
-        document.getElementById('soundControl').addEventListener('click', function() {
-            isSoundEnabled = !isSoundEnabled;
-            const icon = this.querySelector('i');
-            
-            if (isSoundEnabled) {
-                icon.classList.remove('fa-volume-mute');
-                icon.classList.add('fa-volume-up');
-                if (globalGainNode) globalGainNode.gain.value = 0.3;
-            } else {
-                icon.classList.remove('fa-volume-up');
-                icon.classList.add('fa-volume-mute');
-                if (globalGainNode) globalGainNode.gain.value = 0;
-                stopFrequency();
-            }
-        });
-
-        // Initialize audio on first interaction
-        document.addEventListener('click', function initOnFirstClick() {
-            initAudio();
-            startBackgroundHum();
-            document.removeEventListener('click', initOnFirstClick);
-        }, { once: true });
-
-        // Start background hum after delay
-        setTimeout(() => {
-            if (audioContext && isSoundEnabled) startBackgroundHum();
-        }, 10000);
     </script>
 </body>
 </html>

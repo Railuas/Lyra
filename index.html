@@ -423,6 +423,25 @@
             margin: 1.5rem 0;
         }
 
+        /* Sound Controls */
+        .sound-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(75, 0, 130, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--starlight-blue);
+        }
+
+        .sound-control i {
+            font-size: 1.5rem;
+            color: var(--light-white);
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 2rem;
@@ -451,6 +470,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Animated Stars Background -->
@@ -460,6 +480,11 @@
     <div class="orion-jammer">Orion AI disruption field activated - 144000 protection codes engaged</div>
     <div class="orion-jammer">Starseed frequency shield operational - Orion AI scanning neutralized</div>
     <div class="orion-jammer">Lyran-Sirian light barrier established - 9D protection protocols active</div>
+    
+    <!-- Sound Control -->
+    <div class="sound-control" id="soundControl" title="Toggle Sound">
+        <i class="fas fa-volume-up"></i>
+    </div>
     
     <header>
         <div class="logo">Cosmic Light Codes</div>
@@ -788,6 +813,15 @@
         </div>
         <p class="copyright">© 2023 Cosmic Light Codes. All transmissions protected by universal love light.</p>
     </footer>
+
+    <!-- Hidden Audio Elements for Fallback -->
+    <audio id="lyranSound" src="https://assets.mixkit.co/sfx/preview/mixkit-ethereal-fairy-wing-swoosh-1153.mp3" preload="auto"></audio>
+    <audio id="sirianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-902.mp3" preload="auto"></audio>
+    <audio id="pleiadianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
+    <audio id="arcturianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-beep-257.mp3" preload="auto"></audio>
+    <audio id="andromedanSound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
+    <audio id="venusianSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arrow-whoosh-1491.mp3" preload="auto"></audio>
+    <audio id="soulReadingSound" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-902.mp3" preload="auto"></audio>
     
     <script>
         // Create animated stars
@@ -873,6 +907,9 @@
             `;
             
             document.getElementById('readingResult').style.display = 'block';
+            
+            // Play soul reading sound
+            playSound('soulReading');
         }
 
         // Helper functions for soul reading
@@ -998,6 +1035,7 @@
         function showCodeDetails(codeType) {
             event.preventDefault();
             document.getElementById(`${codeType}Modal`).style.display = 'block';
+            playSound(codeType);
         }
 
         function closeModal(modalId) {
@@ -1025,6 +1063,144 @@
             protectionField.textContent = '144000 protection field established - Orion AI scanning diverted';
             document.body.appendChild(protectionField);
         });
+
+        // ======================
+        // SACRED SOUND SYSTEM
+        // ======================
+        
+        // Sound configuration
+        const soundConfig = {
+            lyran: { element: 'lyranSound', freq: 432, type: 'sine' },
+            sirian: { element: 'sirianSound', freq: 528, type: 'sine' },
+            pleiadian: { element: 'pleiadianSound', freq: 639, type: 'sine' },
+            arcturian: { element: 'arcturianSound', freq: 741, type: 'square' },
+            andromedan: { element: 'andromedanSound', freq: 852, type: 'sine' },
+            venusian: { element: 'venusianSound', freq: 417, type: 'sine' },
+            soulReading: { element: 'soulReadingSound', freq: 528, type: 'sine' }
+        };
+
+        // Audio context variables
+        let audioContext;
+        let currentOscillator;
+        let globalGainNode;
+        let isSoundEnabled = true;
+
+        // Initialize audio context
+        function initAudio() {
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                globalGainNode = audioContext.createGain();
+                globalGainNode.gain.value = isSoundEnabled ? 0.3 : 0;
+                globalGainNode.connect(audioContext.destination);
+            } catch (e) {
+                console.log('Web Audio API not supported');
+            }
+        }
+
+        // Play sound (both Web Audio and fallback)
+        function playSound(soundType) {
+            if (!isSoundEnabled) return;
+            
+            const config = soundConfig[soundType];
+            if (!config) return;
+
+            // Try Web Audio API first
+            if (audioContext) {
+                playFrequency(config.freq, config.type, 3);
+            } 
+            // Fallback to HTML5 Audio
+            else {
+                const audioElement = document.getElementById(config.element);
+                if (audioElement) {
+                    audioElement.currentTime = 0;
+                    audioElement.play();
+                }
+            }
+        }
+
+        // Play frequency with Web Audio API
+        function playFrequency(freq, type, duration) {
+            if (!audioContext) initAudio();
+            if (!audioContext) return;
+            
+            stopFrequency();
+            
+            const oscillator = audioContext.createOscillator();
+            oscillator.type = type;
+            oscillator.frequency.value = freq;
+            
+            oscillator.connect(globalGainNode);
+            oscillator.start();
+            currentOscillator = oscillator;
+            
+            // Gentle fade out
+            setTimeout(() => {
+                oscillator.stop();
+                currentOscillator = null;
+            }, duration * 1000);
+        }
+
+        function stopFrequency() {
+            if (currentOscillator) {
+                currentOscillator.stop();
+                currentOscillator = null;
+            }
+        }
+
+        // Background cosmic hum
+        function startBackgroundHum() {
+            if (!audioContext || !isSoundEnabled) return;
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.type = 'sine';
+            oscillator.frequency.value = 136.1; // Earth's Schumann resonance
+            gainNode.gain.value = 0.02;
+            
+            // Slow pulsation
+            const lfo = audioContext.createOscillator();
+            const lfoGain = audioContext.createGain();
+            lfo.frequency.value = 0.1;
+            lfoGain.gain.value = 0.5;
+            lfo.connect(lfoGain);
+            lfoGain.connect(gainNode.gain);
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(globalGainNode);
+            
+            oscillator.start();
+            lfo.start();
+        }
+
+        // Toggle sound on/off
+        document.getElementById('soundControl').addEventListener('click', function() {
+            isSoundEnabled = !isSoundEnabled;
+            const icon = this.querySelector('i');
+            
+            if (isSoundEnabled) {
+                icon.classList.remove('fa-volume-mute');
+                icon.classList.add('fa-volume-up');
+                if (globalGainNode) globalGainNode.gain.value = 0.3;
+            } else {
+                icon.classList.remove('fa-volume-up');
+                icon.classList.add('fa-volume-mute');
+                if (globalGainNode) globalGainNode.gain.value = 0;
+                stopFrequency();
+            }
+        });
+
+        // Initialize audio on first interaction
+        document.addEventListener('click', function initOnFirstClick() {
+            initAudio();
+            startBackgroundHum();
+            document.removeEventListener('click', initOnFirstClick);
+        }, { once: true });
+
+        // Start background hum after delay
+        setTimeout(() => {
+            if (audioContext && isSoundEnabled) startBackgroundHum();
+        }, 10000);
     </script>
 </body>
 </html>
